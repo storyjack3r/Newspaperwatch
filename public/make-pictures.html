@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
+    <script>
+
+      var textLong=false;
+      function wrapText(context, text, x, y, maxWidth, lineHeight) {
+        var words = text.split(' ');
+        var line = '';
+        if (words.length>10){
+          textLong=true;
+          console.log("debug");
+                     }
+        
+              
+      if(textLong===true){
+      context.font = '24pt Calibri';
+        textLong=false;
+        console.log("debug2");
+      }
+      else{
+      context.font = '32pt Calibri';
+        console.log("debug3");
+      }
+        
+        for(var n = 0; n < words.length; n++) {
+          var testLine = line + words[n] + ' ';
+          var metrics = context.measureText(testLine);
+          var testWidth = metrics.width;
+          if (testWidth > maxWidth && n > 0) {
+            context.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+          }
+          else {
+            line = testLine;
+          }
+        }
+        context.fillText(line, x, y);
+      }
+      
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      
+      // var img = new Image(); // HTML5 Constructor
+      //     img.src = getImage();
+      getImage();
+      console.log(img);
+          
+      
+      
+      
+    context.drawImage(img,0,0);
+      var maxWidth = 600;
+      var lineHeight = 45;
+      var x = (canvas.width - maxWidth) / 2;
+      var y = (canvas.height/2);
+      var text = 'Today a homeless man gave me some really good advice... "Don\'t date white girls there evil and steal your money" 😂😂';
+    
+
+
+
+      wrapText(context, text, x, y, maxWidth, lineHeight);
+
+      
+      //------------------------------
+      //--flickr API call
+      //------------------------------
+      
+//       function getImage(){
+//     $(document).ready(function(){
+//       var backgroundImgs = ["mountains", "lakes", "sunsets"];
+//   var x=Math.floor((Math.random() * backgroundImgs.length));
+  
+//   var backgroundImg= backgroundImgs[x];
+//       keyword = "mountains";
+//         // keyword = backgroundImg;
+//         $.getJSON("https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+//         {
+//             tags: keyword,
+//             tagmode: "any",
+//             format: "json"
+//         },
+//         function(data) {
+//             var rnd = Math.floor(Math.random() * data.items.length);
+
+//             var image_src = data.items[rnd]['media']['m'].replace("_m", "_b");
+//             return image_src;
+            
+
+//         });
+
+//     });
+//     }
+      
+      function getImage(searchTerm){
+    $(document).ready(function(){
+        keyword = searchTerm;
+        $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+        {
+            tags: keyword,
+            tagmode: "any",
+            format: "json"
+        },
+        function(data) {
+            var rnd = Math.floor(Math.random() * data.items.length);
+
+            var image_src = data.items[rnd]['media']['m'].replace("_m", "_b");
+            console.log(document.getElementById(divId));
+            img.src=image_src;
+            
+
+        });
+
+    });
+    }
+      
+    </script>
+  </body>
+</html>      

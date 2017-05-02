@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html itemscope itemtype="https://schema.org/WebPage" lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" type="text/css" />  
+  <title>Twitter bot</title>
+</head>
+<body>
+  <!--
+    This is a placeholder file that's available at twitterbot.glitch.me. You don't need to change anything here for your bot to work, 
+    but you could, for example, write a little bit about your bot, perhaps embed some of the bot's tweets (dev.twitter.com/web/embedded-tweets).
+  -->
+  <section>
+    <div class="centered">
+      <img class="w-100" src="https://cdn.gomix.com/4032b241-bff8-473e-aa6b-eb0c92a4bd06%2Ftweeting.gif">
+    </div>
+    <h1>Twitter bot template for <a href="https://glitch.com">Glitch</a></h1>
+    <p>See this project's <a href="https://glitch.com/edit/#!/project/twitterbot">source code</a> to learn more.</p>
+    <p>Created by <a href="https://twitter.com/fourtonfish">Stefan Bohacek</a>. Want to learn more about (Twitter) bots? Check out <a href="https://botwiki.org/">Botwiki</a> and <a href="https://botmakers.org/">Botmakers</a>!</p>
+  </section>
+  <script type="text/javascript"> 
+    
+    var trumpCounter = {search:'Trump', counter: 0};
+var brexitCounter = {search:'Brexit', counter: 0};
+var terrorismCounter = {search:'terror', counter: 0};
+var electionCounter = {search:'election', counter:0};
+var sportCounter = {search:/sport/i, counter:0};
+var mayCounter = {search:'May', counter:0};
+var corbynCounter = {search:'Corbyn', counter:0};
+var statsList = [];
+function orderFacts(){
+  
+  statsList[0]= trumpCounter.counter;
+ statsList[1]=brexitCounter.counter;
+ statsList[2]=terrorismCounter.counter;
+ statsList[3]=electionCounter.counter;
+ statsList[4]=sportCounter.counter;
+ statsList[5]=mayCounter.counter;
+ statsList[6]=corbynCounter.counter;
+  console.log(statsList);
+  }
+    orderFacts();
+    statsList = [0,1,2,3,4,5,6,7];
+    console.log(statsList);
+    
+  var adviceSubjects = ["love", "life", "success", "money", "happiness", "bad", "careers", "astrology", "philosophy","truth"];
+  var typeStatements = ["advice", "philosophy", "my perspective", "quote", "quotation"];
+  var yy=Math.floor((Math.random() * typeStatements.length));
+  var xx=Math.floor((Math.random() * adviceSubjects.length));
+  var adviceSubject= adviceSubjects[xx];
+  var typeStatement= typeStatements[yy];
+  var searchTerm = typeStatement + " " + adviceSubject;
+    console.log(searchTerm);
+  </script>
+</body>
+</html>
